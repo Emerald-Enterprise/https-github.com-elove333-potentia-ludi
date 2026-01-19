@@ -1,0 +1,29 @@
+Primary: 0x Swap API v2 (/swap/permit2/quote or /swap/allowance-holder/quote). Always pass chainId, sellToken, buyToken, sellAmount/buyAmount, taker; bias to Uniswap only if the NL intent asks (includedSources=Uniswap_V3). 0x v1 is sunset (use v2).  ￼
+
+Server quote
+// app/api/intents/quote/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+const OX = 'https://api.0x.org/swap/permit2/quote';
+
+export async function POST(req: NextRequest) {
+  const intent = await req.json(); // validated by zod schemas
+  if (intent.type === 'trade.swap') {
+    const params = new URLSearchParams({
+      chainId: String(chainIdFromName(intent.from.chain)),
+      sellToken: tokenAddress(intent.from.token, intent.from.chain),
+      buyToken: tokenAddress(intent.to.token, intent.to.chain),
+      sellAmount: toWei(intent.from.amount, intent.from.token),
+      taker: intent.takerAddress,
+      slippageBps: String(intent.constraints?.slippage_bps ?? 50),
+      ...(intent.constraints?.prefer_sources?.length
+          ? { includedSources: intent.constraints.prefer_sources.join(',') }
+          : {})
+    });
+    const r = await fetch(`${OX}?${params.toString()}`, {
+      headers: { '0x-api-key': process.env.OX_API_KEY!, '0x-version': 'v2' }
+    });
+    const quote = await r.json();
+    return NextResponse.json({ quote }); // we’ll enrich with preview/sim below
+  }
+  return NextResponse.json({ error: 'Unsupported' }, { status: 400 });
+}
