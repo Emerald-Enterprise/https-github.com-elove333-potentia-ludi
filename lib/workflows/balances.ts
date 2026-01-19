@@ -202,15 +202,17 @@ export async function getApprovals(
  * @param params - Workflow parameters
  * @returns Complete balance information based on requested data
  */
-export async function executeBalancesWorkflow(
-  params: BalancesWorkflowParams
-): Promise<{
+type BalancesWorkflowResult = {
   native?: Balance;
   tokens?: TokenBalance[];
   nfts?: NFT[];
   approvals?: Approval[];
-}> {
-  const result: ReturnType<typeof executeBalancesWorkflow> extends Promise<infer T> ? T : never = {};
+};
+
+export async function executeBalancesWorkflow(
+  params: BalancesWorkflowParams
+): Promise<BalancesWorkflowResult> {
+  const result: BalancesWorkflowResult = {};
   
   // Always fetch native balance
   try {
