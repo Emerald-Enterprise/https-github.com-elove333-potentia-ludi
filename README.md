@@ -1,8 +1,27 @@
-# Potentia Ludi 🎮
+# Potentia Ludi 🎮💬
 
-A Universal On-Chain Gaming Wallet Hub – a single app that auto-detects any Web3 game you open, optimizes gas, swaps tokens behind the scenes, tracks rewards across chains, and auto-generates creator-ready clips and stats overlays.
+## Conversational Web3 Wallet Hub
+
+A Universal On-Chain Gaming Wallet Hub with natural language capabilities – interact with Web3 through simple conversations. Just say "swap 100 USDC to ETH" or "show my NFT balance" and let AI handle the complexity. The app auto-detects games, optimizes gas, swaps tokens, tracks rewards across chains, and generates creator-ready clips.
+
+### What Makes This Different?
+
+Unlike traditional Web3 wallets that require navigating complex UIs and understanding technical jargon:
+- **Natural Language First**: Speak or type commands naturally - "send 0.1 ETH to vitalik.eth"
+- **Context-Aware**: Remembers your conversation and preferences
+- **Safety by Design**: AI-powered risk scoring and transaction simulation before execution
+- **Multi-Chain Native**: Seamlessly operate across Ethereum, Polygon, Arbitrum, Optimism, Base, and BSC
+- **Gaming Focused**: Automatic game detection and reward tracking built-in
 
 ## Features
+
+### 💬 Conversational Interface (Coming Soon)
+- Natural language processing for all Web3 operations
+- AI-powered intent recognition and entity extraction
+- Multi-turn conversations with context awareness
+- Voice and text input support
+- Real-time streaming responses
+- Smart clarification questions for ambiguous requests
 
 ### 🔍 Auto Game Detection
 - Automatically detects Web3 games when you open them
@@ -37,16 +56,27 @@ A Universal On-Chain Gaming Wallet Hub – a single app that auto-detects any We
 
 ## Technology Stack
 
+### Current Implementation
 - **Frontend**: React 18 + TypeScript
 - **State Management**: Zustand
 - **Web3 Integration**: Ethers.js v6, Wagmi, Viem
 - **Build Tool**: Vite
 - **Styling**: Inline styles with CSS animations
 
+### Conversational Hub Stack (Planned)
+- **Framework**: Next.js 16 (App Router)
+- **Runtime**: Node.js 24 LTS
+- **AI/NLP**: OpenAI Responses API (GPT-4)
+- **Database**: PostgreSQL 16+
+- **Cache**: Redis 7+
+- **Authentication**: Sign-In with Ethereum (SIWE)
+
 ## Getting Started
 
 ### Prerequisites
-- Node.js 18+ and npm
+- Node.js 18+ and npm (Node.js 24+ recommended for full conversational features)
+- PostgreSQL 16+ (for conversational features)
+- Redis 7+ (for conversational features)
 
 ### Installation
 
@@ -61,12 +91,21 @@ cd https-github.com-elove333-potentia-ludi
 npm install
 ```
 
-3. Start the development server:
+3. Set up environment variables (for conversational features):
+```bash
+cp .env.example .env.local
+# Edit .env.local with your configuration:
+# - OPENAI_API_KEY=your_openai_api_key
+# - DATABASE_URL=postgresql://user:pass@localhost:5432/potentia
+# - REDIS_URL=redis://localhost:6379
+```
+
+4. Start the development server:
 ```bash
 npm run dev
 ```
 
-4. Open http://localhost:3000 in your browser
+5. Open http://localhost:3000 in your browser
 
 ### Building for Production
 
@@ -78,6 +117,7 @@ The build output will be in the `dist` directory.
 
 ## Usage
 
+### Current Features
 1. **Connect Your Wallet**: Click "Connect Wallet" to link your Web3 wallet
 2. **Enable Features**: Toggle gas optimization and auto-swap features as needed
 3. **Play Games**: Open any supported Web3 game, and it will be auto-detected
@@ -85,27 +125,44 @@ The build output will be in the `dist` directory.
 5. **Track Rewards**: Monitor your cross-chain rewards in real-time
 6. **View Clips**: Access your recorded clips with embedded stats overlays
 
+### Conversational Features (Coming Soon)
+1. **Text Commands**: Type natural language commands like:
+   - "Show my balance on Polygon"
+   - "Swap 100 USDC for ETH"
+   - "What are my NFTs worth?"
+   - "Bridge 10 MATIC to Arbitrum"
+2. **Voice Input**: Speak your commands hands-free while gaming
+3. **Smart Confirmations**: AI reviews transactions and asks for confirmation on risky operations
+4. **Context Memory**: Continues conversations naturally - "Now do the same on Optimism"
+
 ## Architecture
 
-### Core Services
-
+### Current Architecture
+**Core Services**:
 - **gameDetection.ts**: Monitors URLs and blockchain transactions to detect Web3 games
 - **gasOptimization.ts**: Tracks gas prices and optimizes transaction parameters
 - **tokenSwap.ts**: Handles automatic token swapping with DEX aggregation
 - **rewardTracking.ts**: Monitors and tracks rewards across multiple chains
 - **clipGenerator.ts**: Records gameplay and generates clips with stats overlays
 
-### State Management
-
+**State Management**:
 - **gamingWalletStore.ts**: Zustand store managing wallet state, games, rewards, and clips
 
-### Components
-
+**Components**:
 - **App.tsx**: Main application container
 - **WalletDashboard.tsx**: Wallet connection and feature toggles
 - **DetectedGames.tsx**: Shows auto-detected games with recording controls
 - **RewardsPanel.tsx**: Displays cross-chain rewards with claim functionality
 - **ClipsGallery.tsx**: Gallery of recorded clips with stats
+
+### Conversational Architecture (Planned)
+See [ARCHITECTURE.md](./ARCHITECTURE.md) for detailed specifications of:
+- Natural Language Processing Pipeline (OpenAI Responses API)
+- Intent Resolution Layer (parser, validator, risk scorer)
+- Workflow Modules (`balances.get`, `trade.swap`, `bridge.transfer`)
+- Execution Layer (RPC gateway, transaction builder, simulator)
+- Data Layer (PostgreSQL, Redis, SIWE authentication)
+- Safety Policies and MVP Criteria
 
 ## Supported Chains
 
@@ -147,7 +204,46 @@ src/
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! This project is evolving to include conversational AI features alongside the existing gaming wallet capabilities.
+
+### How to Contribute
+
+1. **Fork and Clone**: Fork this repository and clone your fork locally
+2. **Create a Branch**: `git checkout -b feature/your-feature-name`
+3. **Make Changes**: Follow the code style and architecture patterns
+4. **Test**: Ensure your changes work and don't break existing features
+5. **Submit PR**: Open a pull request with a clear description
+
+### Areas for Contribution
+
+**Current Features** (Vite + React):
+- Improve game detection algorithms
+- Add support for new gaming platforms
+- Enhance clip generation with more stats
+- Optimize gas prediction algorithms
+
+**Conversational Features** (Next.js + AI):
+- Implement NL → Intent pipeline components
+- Add new workflow modules (e.g., `nft.transfer`, `portfolio.analyze`)
+- Improve intent recognition accuracy
+- Enhance safety validation rules
+- Build UI components for conversational interface
+
+### Extension Points
+
+The architecture is designed for modularity. See [ARCHITECTURE.md](./ARCHITECTURE.md) for:
+- **Adding New Workflows**: Guide for implementing custom intent handlers
+- **Integrating New APIs**: How to add DEX aggregators, bridge providers, etc.
+- **Extending Intent Recognition**: Adding new command types and entities
+- **Custom Safety Rules**: Implementing domain-specific validation
+
+### Development Setup
+
+See the detailed contributor guidelines in [ARCHITECTURE.md](./ARCHITECTURE.md#contributor-guidelines) for:
+- Local environment setup
+- Code organization patterns
+- Testing strategies
+- Security best practices
 
 ## License
 
