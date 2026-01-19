@@ -69,7 +69,7 @@ export async function getQuote(params: SwapParams): Promise<SwapQuote> {
   // url.searchParams.append('sellToken', params.fromToken);
   // url.searchParams.append('buyToken', params.toToken);
   // url.searchParams.append('sellAmount', params.amount.toString());
-  // url.searchParams.append('slippagePercentage', (params.slippage / 100).toString());
+  // url.searchParams.append('slippagePercentage', (params.slippage / 10000).toString());
   // url.searchParams.append('chainId', params.chainId.toString());
   // 
   // const response = await fetch(url, {
