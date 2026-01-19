@@ -1,0 +1,19 @@
+Primary: Alchemy Portfolio/NFT APIs (multi-chain, good indexing); Fallback: Moralis Wallet // app/api/balances/route.ts
+import
+ { NextRequest, NextResponse } from 'next/server';
+
+export async function POST(req: NextRequest) {
+  const { address, chains } = await req.json();
+  const results = await Promise.all(chains.map(async (chainId:number) => {
+    const r = await fetch(`https://dashboard.alchemy.com/api/portfolio/balances?address=${address}&chainId=${chainId}`, {
+      headers: { 'X-Alchemy-Token': process.env.ALCHEMY_API_KEY! }
+    });
+    if (r.ok) return { chainId, ...(await r.json()) };
+    // fallback to Moralis
+    const r2 = await fetch(`https://deep-index.moralis.io/api/v2.2/wallets/${address}/tokens?chain=${chainId}`, {
+      headers: { 'X-API-Key': process.env.MORALIS_API_KEY! }
+    });
+    return { chainId, ...(await r2.json()) };
+  }));
+  return NextResponse.json({ results });
+}
