@@ -5,13 +5,14 @@ Thank you for your interest in contributing to the Conversational Web3 Wallet Hu
 ## Table of Contents
 
 1. [Getting Started](#getting-started)
-2. [Code Organization](#code-organization)
-3. [Adding New Workflows](#adding-new-workflows)
-4. [Integrating New APIs](#integrating-new-apis)
-5. [Extending Intent Recognition](#extending-intent-recognition)
-6. [Adding Safety Rules](#adding-safety-rules)
-7. [Testing Guidelines](#testing-guidelines)
-8. [Pull Request Process](#pull-request-process)
+2. [Git Workflows & Best Practices](#git-workflows--best-practices)
+3. [Code Organization](#code-organization)
+4. [Adding New Workflows](#adding-new-workflows)
+5. [Integrating New APIs](#integrating-new-apis)
+6. [Extending Intent Recognition](#extending-intent-recognition)
+7. [Adding Safety Rules](#adding-safety-rules)
+8. [Testing Guidelines](#testing-guidelines)
+9. [Pull Request Process](#pull-request-process)
 
 ## Getting Started
 
@@ -36,11 +37,35 @@ Thank you for your interest in contributing to the Conversational Web3 Wallet Hu
    - [ARCHITECTURE.md](./ARCHITECTURE.md) - System design
    - [SETUP.md](./SETUP.md) - Local setup guide
    - [README.md](./README.md) - Feature overview
+   - [GIT_WORKFLOWS.md](./GIT_WORKFLOWS.md) - Git workflows and conflict resolution
 
 5. **Create a Branch**
    ```bash
    git checkout -b feature/your-feature-name
    ```
+
+## Git Workflows & Best Practices
+
+When contributing to this project, you may need to work with common Git operations like cherry-picking commits, resolving conflicts, or safely rewriting commit history. We've created a comprehensive guide to help you:
+
+**📖 [Git Workflows Guide](./GIT_WORKFLOWS.md)** - Complete reference with practical examples
+
+This guide covers:
+- **Cherry-picking commits** from one branch to another (e.g., hotfixes from feature to main)
+- **Safely rewriting history** with `git reset --soft` and `--force-with-lease`
+- **Resolving merge conflicts** during cherry-pick operations
+- **Handling stash conflicts** when applying stashed changes
+- **Safety tips and recovery strategies** using `git reflog`
+
+### Quick Git Tips for Contributors
+
+- **Always create a backup branch** before any destructive operations
+- **Use `--force-with-lease`** instead of `--force` when pushing rewrites
+- **Cherry-pick with `-x`** to maintain traceability of commits
+- **Check `git status` and `git diff`** immediately when conflicts occur
+- **Use `git reflog`** to recover from mistakes
+
+See the [Git Workflows Guide](./GIT_WORKFLOWS.md) for detailed step-by-step instructions and conflict resolution examples.
 
 ## Code Organization
 
