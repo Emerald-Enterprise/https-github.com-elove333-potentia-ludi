@@ -28,6 +28,7 @@ class SafetyMonitoringService {
   private enableAutoCleanup: boolean;
   private cleanupInterval: number;
   private cleanupTimer: NodeJS.Timeout | null = null;
+  private violationCounter: number = 0;
 
   constructor(config: SafetyMonitoringConfig = {}) {
     this.maxViolations = config.maxViolations ?? 1000;
@@ -50,8 +51,9 @@ class SafetyMonitoringService {
     description: string,
     metadata?: Record<string, any>
   ): SafetyViolation {
+    this.violationCounter++;
     const violation: SafetyViolation = {
-      id: `violation-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      id: `violation-${Date.now()}-${this.violationCounter}-${Math.random().toString(36).substring(2, 11)}`,
       timestamp: new Date(),
       type,
       severity,
