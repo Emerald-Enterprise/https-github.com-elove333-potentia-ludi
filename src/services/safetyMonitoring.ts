@@ -5,6 +5,8 @@
  * with bounded memory management to prevent memory leaks.
  */
 
+const RANDOM_ID_LENGTH = 9;
+
 export interface SafetyViolation {
   id: string;
   timestamp: Date;
@@ -53,7 +55,7 @@ class SafetyMonitoringService {
   ): SafetyViolation {
     this.violationCounter++;
     const violation: SafetyViolation = {
-      id: `violation-${Date.now()}-${this.violationCounter}-${Math.random().toString(36).substring(2, 11)}`,
+      id: `violation-${Date.now()}-${this.violationCounter}-${Math.random().toString(36).substring(2, 2 + RANDOM_ID_LENGTH)}`,
       timestamp: new Date(),
       type,
       severity,
@@ -137,7 +139,9 @@ class SafetyMonitoringService {
 
     this.cleanupTimer = setInterval(() => {
       const removed = this.cleanupOldViolations();
-      if (removed > 0) {
+      // Silent cleanup - only log in debug mode or if using a proper logging framework
+      // In production, consider emitting events or metrics instead of logging
+      if (removed > 0 && process.env.NODE_ENV === 'development') {
         console.log(`SafetyMonitoringService: Cleaned up ${removed} old violations`);
       }
     }, this.cleanupInterval);
