@@ -15,7 +15,9 @@ Unlike traditional Web3 wallets that require navigating complex UIs and understa
 
 ## Features
 
-### 💬 Conversational Interface (Coming Soon)
+### 💬 Conversational Features
+<!-- CHUNK: Conversational Features - Natural Language Interface (max 800 chars) -->
+**Natural Language Interface (Coming Soon)**
 - Natural language processing for all Web3 operations
 - AI-powered intent recognition and entity extraction
 - Multi-turn conversations with context awareness
@@ -23,36 +25,49 @@ Unlike traditional Web3 wallets that require navigating complex UIs and understa
 - Real-time streaming responses
 - Smart clarification questions for ambiguous requests
 
-### 🔍 Auto Game Detection
+**Conversational Commands**
+- Text-based commands like "Show my balance on Polygon"
+- Voice input for hands-free gaming interactions
+- Smart confirmations with AI-powered risk assessment
+- Context memory for natural conversation flow
+<!-- END CHUNK -->
+
+### 🎮 Gaming Features
+<!-- CHUNK: Gaming Features - Core Functionality (max 800 chars) -->
+**🔍 Auto Game Detection**
 - Automatically detects Web3 games when you open them
 - Monitors known gaming platforms across multiple chains
 - Supports Axie Infinity, Gods Unchained, The Sandbox, Decentraland, and more
 - Custom game addition support
 
-### ⛽ Gas Optimization
-- Real-time gas price monitoring across all major chains
-- Automatic transaction optimization to reduce costs
-- Smart scheduling for non-urgent transactions
-- Average savings of 30% on gas fees
-
-### 🔄 Automatic Token Swaps
-- Behind-the-scenes token swapping when games need specific tokens
-- Aggregates best routes from multiple DEX platforms
-- Minimal slippage with optimal routing
-- Supports all major tokens and chains
-
-### 🏆 Multi-Chain Reward Tracking
-- Tracks rewards across Ethereum, Polygon, BSC, Arbitrum, Optimism, and Base
-- Real-time USD value calculation
-- One-click reward claiming
-- Comprehensive reward history
-
-### 🎬 Creator-Ready Clips & Stats
+**🎬 Creator-Ready Clips & Stats**
 - Automatic recording of gaming sessions
 - Real-time stats overlay generation
 - Track transactions, gas spent, rewards earned, and win rates
 - Export clips with professional stats overlays
 - Social media ready format
+<!-- END CHUNK -->
+
+### ⛓️ Blockchain Features
+<!-- CHUNK: Blockchain Features - Transaction Management (max 800 chars) -->
+**⛽ Gas Optimization**
+- Real-time gas price monitoring across all major chains
+- Automatic transaction optimization to reduce costs
+- Smart scheduling for non-urgent transactions
+- Average savings of 30% on gas fees
+
+**🔄 Automatic Token Swaps**
+- Behind-the-scenes token swapping when games need specific tokens
+- Aggregates best routes from multiple DEX platforms
+- Minimal slippage with optimal routing
+- Supports all major tokens and chains
+
+**🏆 Multi-Chain Reward Tracking**
+- Tracks rewards across Ethereum, Polygon, BSC, Arbitrum, Optimism, and Base
+- Real-time USD value calculation
+- One-click reward claiming
+- Comprehensive reward history
+<!-- END CHUNK -->
 
 ## Technology Stack
 
@@ -117,23 +132,35 @@ The build output will be in the `dist` directory.
 
 ## Usage
 
-### Current Features
+<!-- CHUNK: Usage - Current Features Workflow (max 800 chars) -->
+### Current Features Workflow
 1. **Connect Your Wallet**: Click "Connect Wallet" to link your Web3 wallet
 2. **Enable Features**: Toggle gas optimization and auto-swap features as needed
 3. **Play Games**: Open any supported Web3 game, and it will be auto-detected
 4. **Record Sessions**: Click "Record" on any detected game to capture your gameplay
 5. **Track Rewards**: Monitor your cross-chain rewards in real-time
 6. **View Clips**: Access your recorded clips with embedded stats overlays
+<!-- END CHUNK -->
 
-### Conversational Features (Coming Soon)
-1. **Text Commands**: Type natural language commands like:
-   - "Show my balance on Polygon"
-   - "Swap 100 USDC for ETH"
-   - "What are my NFTs worth?"
-   - "Bridge 10 MATIC to Arbitrum"
-2. **Voice Input**: Speak your commands hands-free while gaming
-3. **Smart Confirmations**: AI reviews transactions and asks for confirmation on risky operations
-4. **Context Memory**: Continues conversations naturally - "Now do the same on Optimism"
+<!-- CHUNK: Usage - Conversational Interface (max 800 chars) -->
+### Conversational Features Usage (Coming Soon)
+**Text Command Examples**:
+- "Show my balance on Polygon" - Query balances on specific chains
+- "Swap 100 USDC for ETH" - Execute token swaps with natural language
+- "What are my NFTs worth?" - Get NFT portfolio valuation
+- "Bridge 10 MATIC to Arbitrum" - Cross-chain asset transfers
+
+**Voice Interaction**:
+- Speak commands hands-free while gaming
+- Voice input automatically converted to actions
+- Real-time audio feedback on transaction status
+
+**Smart Safety Features**:
+- AI reviews transactions before execution
+- Risk assessment on potentially dangerous operations
+- Automatic confirmation prompts for high-value transactions
+- Context-aware clarification questions
+<!-- END CHUNK -->
 
 ## Architecture
 
@@ -155,14 +182,25 @@ The build output will be in the `dist` directory.
 - **RewardsPanel.tsx**: Displays cross-chain rewards with claim functionality
 - **ClipsGallery.tsx**: Gallery of recorded clips with stats
 
-### Conversational Architecture (Planned)
-See [ARCHITECTURE.md](./ARCHITECTURE.md) for detailed specifications of:
-- Natural Language Processing Pipeline (OpenAI Responses API)
-- Intent Resolution Layer (parser, validator, risk scorer)
-- Workflow Modules (`balances.get`, `trade.swap`, `bridge.transfer`)
-- Execution Layer (RPC gateway, transaction builder, simulator)
-- Data Layer (PostgreSQL, Redis, SIWE authentication)
-- Safety Policies and MVP Criteria
+### 🔧 Workflow Modules Architecture (Planned)
+<!-- CHUNK: Workflow Modules - Intent & Execution System (max 800 chars) -->
+**Workflow Modules** - Modular intent handlers for Web3 operations:
+- `balances.get`: Query token and NFT balances across chains
+- `trade.swap`: Execute token swaps with DEX aggregation
+- `bridge.transfer`: Cross-chain asset bridging
+- `nft.transfer`: NFT transfers and marketplace interactions
+- `portfolio.analyze`: Portfolio valuation and analytics
+
+**Processing Pipeline**:
+1. Natural Language Processing (OpenAI Responses API integration)
+2. Intent Resolution Layer (parser, validator, risk scorer)
+3. Workflow Module Routing (intent → action mapping)
+4. Execution Layer (RPC gateway, transaction builder, simulator)
+5. Data Layer (PostgreSQL for state, Redis for caching)
+6. Safety Policies (SIWE authentication, risk assessment)
+
+See [ARCHITECTURE.md](./ARCHITECTURE.md) for complete specifications.
+<!-- END CHUNK -->
 
 ## Supported Chains
 
