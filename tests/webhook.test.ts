@@ -88,7 +88,7 @@ describe('Webhook Payload Validation', () => {
   });
 
   it('should identify missing eventType', () => {
-    const invalidPayload = {
+    const invalidPayload: Partial<{ eventType: string; walletAddress: string }> = {
       walletAddress: '0xAddress'
     };
     
@@ -96,11 +96,10 @@ describe('Webhook Payload Validation', () => {
   });
 
   it('should identify missing walletAddress', () => {
-    const invalidPayload = {
+    const invalidPayload: Partial<{ eventType: string; walletAddress: string }> = {
       eventType: 'game_event'
     };
     
-    // @ts-ignore - testing invalid payload
     expect(invalidPayload.walletAddress).toBeUndefined();
   });
 });

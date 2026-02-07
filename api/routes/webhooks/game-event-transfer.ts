@@ -57,8 +57,8 @@ router.post(
 
       const { eventType, walletAddress, data } = req.body;
 
-      // Log database save operation
-      console.log('💾 Saving Event to DB: ', data || req.body);
+      // Log database save operation (sanitized for security)
+      console.log('💾 Saving Event to DB: ', { eventType, walletAddress, hasData: !!data });
 
       // Save event to database using telemetry
       try {
