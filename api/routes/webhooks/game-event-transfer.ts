@@ -1,7 +1,7 @@
 // Game Event Transfer Webhook Route
 import { Router, Request, Response } from 'express';
 import * as crypto from 'crypto';
-import { optionalAuth, AuthenticatedRequest, success, error } from '../../client';
+import { optionalAuth, AuthenticatedRequest, success, error, rateLimit } from '../../client';
 import { telemetryQueries } from '../../lib/database';
 
 const router = Router();
@@ -31,6 +31,7 @@ function verifySignature(req: Request): boolean {
 // Game event transfer webhook endpoint
 router.post(
   '/',
+  rateLimit(100, 60000), // Allow 100 requests per minute per IP
   optionalAuth,
   async (req: AuthenticatedRequest, res: Response) => {
     try {

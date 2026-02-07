@@ -1,12 +1,12 @@
 // Test Webhook Route
 import { Router, Request, Response } from 'express';
 import * as crypto from 'crypto';
-import { success, error } from '../../client';
+import { success, error, rateLimit } from '../../client';
 
 const router = Router();
 
 // Test webhook endpoint for simulating webhook requests
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', rateLimit(10, 60000), async (req: Request, res: Response) => {
   try {
     console.log('📊 Simulated Webhook Fired!');
 
