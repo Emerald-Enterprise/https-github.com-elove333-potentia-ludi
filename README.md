@@ -1,15 +1,19 @@
 # Potentia Ludi 🎮💬
 
 ## Conversational Web3 Wallet Hub
-A universal, AI-native on-chain gaming wallet hub that exposes Web3 as a set of high-level intents instead of raw transactions. Developers integrate once and get a natural-language control plane over wallets, games, and creator flows across multiple chains.[quecko]
+A universal, AI-native on-chain gaming wallet hub that exposes Web3 as a set of high-level intents instead of raw transactions. Developers integrate once and get a natural-language control plane over wallets, games, and creator flows across multiple chains.
 Core concept
-The wallet is built as a smart-account (ERC‑4337/AA)–first client that accepts free-form text or voice like “swap 100 USDC to ETH on the cheapest chain”, “bridge enough gas to play for 2 hours”, or “cash out my weekly rewards to my main wallet”, then compiles that into validated transaction bundles. An intent engine parses user commands, resolves them against on-chain state and supported games, and outputs an execution plan (swaps, bridges, approvals, calls) that the user signs once via a passkey or standard wallet connector.[hackquest +4]
+•The wallet is built as a smart-account (ERC‑4337/AA)–first client that accepts free-form text or voice like “swap 100 USDC to ETH on the cheapest chain”, “bridge enough gas to play for 2 hours”, or “cash out my weekly rewards to my main wallet”, then compiles that into validated transaction bundles. An intent engine parses user commands, resolves them against on-chain state and supported games, and outputs an execution plan (swaps, bridges, approvals, calls) that the user signs once via a passkey or standard wallet connector.
 Architecture for developers
-•	Interface layer: React/Next.js front-end with a chat-style UI, wallet connectors (RainbowKit/Wagmi or WalletConnect), and optional voice input. It streams model tokens and shows a step-by-step execution preview so users always see which contracts, chains, and amounts are involved before signing.[safeheron]
-•	AI / intent layer: An LLM-backed parser that turns natural language into a typed “Intent AST” (action: swap/bridge/mint/send, asset set, chain preference, constraints). Safety policies limit which contract methods and protocols can be called and require user confirmation for high‑risk operations.[alchemy +1]
-•	Execution layer: Smart-contract wallets with account abstraction plus relayers/paymasters for gas sponsorship, batching, and cross-chain routing. This layer chooses the best route for swaps and bridges, optimizes gas per chain, and supports session keys for low-friction in-game actions.[oreateai +3]
-•	Data layer: Indexers and third‑party APIs (e.g., Alchemy-style NFT/tx APIs) aggregate balances, NFTs, and rewards across chains, exposing a unified player profile to both the AI and your UI components.[quecko +2]
-Gaming-specific capabilities
+•	Interface layer: React/Next.js front-end with a chat-style UI, wallet connectors (RainbowKit/Wagmi or WalletConnect), and optional voice input. It streams model tokens and shows a step-by-step execution preview so users always see which contracts, chains, and amounts are involved before signing.
+•	AI / intent layer: An LLM-backed parser that turns natural language into a typed “Intent AST” (action: swap/bridge/mint/send, asset set, chain preference, constraints). Safety policies limit which contract methods and protocols can be called and require user confirmation for high‑risk operations.
+•	Execution layer: Smart-contract wallets with account abstraction plus relayers/paymasters for gas sponsorship, batching, and cross-chain routing. This layer chooses the best route for swaps and bridges, optimizes gas per chain, and supports session keys for low-friction in-game actions.
+•	Data layer: Indexers and third‑party APIs (e.g., Alchemy-style NFT/tx APIs) aggregate balances, NFTs, and rewards across chains, exposing a unified player profile to both the AI and your UI components.
+Gaming-specific capabilitiesSDKs and APIs:
+•	Front-end SDK for dropping the AI wallet chat and balance widgets directly into games or launcher sites.
+•	Backend SDK for triggering intents programmatically (e.g., “grant this role and mint an NFT when player reaches level 10”).
+•	Webhooks for reward events, asset changes, and risk alerts.  
+These allow studios to plug into the same wallet brain without rebuilding auth, wallet UX, or cross-chain logic.
 
 ## What Makes This Different?
 
